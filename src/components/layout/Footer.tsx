@@ -5,18 +5,15 @@ import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineLocationOn, MdOutlineMail } from "react-icons/md";
 import DownloadApp from "../DownloadApp";
 import { footerLinks } from "@/constants";
+import Logo from "../Logo";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-20 border-t">
       <div className="container space-y-6 py-6">
-        <div className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {/* Logo Name */}
-          <div className="flex flex-col justify-between">
-            <div className="text-2xl font-bold font-rubik flex items-center h-fit gap-3">
-              <p className="size-10 bg-gray-50 rounded-xl"></p>
-              <h1>Fresh Harvests</h1>
-            </div>
+        <div className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          <div className="flex flex-col gap-3 justify-between">
+            <Logo />
             <DownloadApp />
           </div>
 

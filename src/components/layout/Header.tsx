@@ -3,16 +3,14 @@
 import { navLinks } from "@/constants";
 import Link from "next/link";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
+import Logo from "../Logo";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 py-4 z-50 bg-transparent border-b">
+    <header className="fixed top-0 left-0 right-0 py-5 z-50 bg-transparent border-b">
       <nav className="container flex items-center justify-between">
         {/* Logo Name */}
-        <div className="text-2xl font-bold flex items-center gap-3">
-          <p className="size-10 bg-gray-50 rounded-xl"></p>
-          <h1>Fresh Harvests</h1>
-        </div>
+        <Logo />
 
         {/* Navigation Links */}
         <ul className="flex items-center justify-center gap-8">

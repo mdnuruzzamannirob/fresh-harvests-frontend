@@ -133,4 +133,13 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply max-w-7xl mx-auto px-4;
+  }
 }

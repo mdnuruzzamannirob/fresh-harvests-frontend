@@ -4,10 +4,39 @@ import { navLinks } from "@/constants";
 import Link from "next/link";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import Logo from "../Logo";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const pathname = usePathname();
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScrolled = () => {
+      if (window.scrollY > 1) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrolled);
+    return () => {
+      window.removeEventListener("scroll", handleScrolled);
+    };
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 py-5 z-50 bg-transparent border-b">
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 py-5 z-50 border-b transition",
+        scrolled
+          ? "bg-background border-inherit"
+          : "bg-transparent border-transparent"
+      )}
+    >
       <nav className="container flex items-center justify-between">
         {/* Logo Name */}
         <Logo />
@@ -15,8 +44,21 @@ const Header = () => {
         {/* Navigation Links */}
         <ul className="flex items-center justify-center gap-8">
           {navLinks?.map((link, index) => (
-            <li key={index}>
-              <Link href={link.href}>{link.name}</Link>
+            <li key={index} className="relative p-1">
+              <Link
+                href={link.href}
+                // className={
+                //   pathname === link.href ? "text-green" : "text-inherit"
+                // }
+              >
+                {link.name}
+              </Link>
+              <span
+                className={cn(
+                  "absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-1/2 rounded-full",
+                  pathname.includes(link.href) ? "bg-green" : "bg-transparent"
+                )}
+              ></span>
             </li>
           ))}
         </ul>

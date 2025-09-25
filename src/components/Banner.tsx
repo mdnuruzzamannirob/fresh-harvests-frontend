@@ -1,7 +1,7 @@
 const Banner = () => {
   return (
     <section className="min-h-dvh bg-gray-20 py-20">
-      <div className="container">
+      <div className="container py-40">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eos
         sapiente sit dignissimos tempora recusandae odit quam odio reprehenderit
         voluptatibus vero temporibus facilis amet, ratione nulla, magnam

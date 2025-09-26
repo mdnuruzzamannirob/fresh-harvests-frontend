@@ -1,5 +1,6 @@
 import Image from "next/image";
 import DownloadApp from "./DownloadApp";
+import Badge from "./Badge";
 
 const Banner = () => {
   return (
@@ -13,14 +14,12 @@ const Banner = () => {
         src="/banner-img.png"
         width={500}
         height={3000}
-        className="absolute bottom-0 max-sm:-right-10 right-0 xl:right-10 z-10 w-4/5 sm:w-3/5 lg:w-1/2 xl:w-2/5 h-auto"
+        className="absolute bottom-0 max-sm:-right-10 right-0 xl:right-10 z-10 w-4/5 sm:w-3/5 lg:w-1/2 xl:w-2/5 2xl:2/6 h-auto"
       />
 
       {/* content */}
       <div className="space-y-8 container z-10">
-        <p className="bg-green/10 border border-green/15 font-semibold text-green w-fit py-1 px-3 max-sm:text-xs rounded-full">
-          Welcome to Fresh Harvests
-        </p>
+        <Badge> Welcome to Fresh Harvests</Badge>
         <h1 className="font-medium font-rubik max-sm:text-[11vw] text-7xl">
           Fresh Fruits <br className="min-lg:hidden" /> and{" "}
           <br className="max-lg:hidden" /> Vegetables

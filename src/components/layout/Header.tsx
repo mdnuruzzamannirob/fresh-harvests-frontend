@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 py-5 z-50 border-b transition",
+        "fixed top-0 left-0 right-0 py-5 z-50 border-b",
         scrolled
           ? "bg-background border-inherit"
           : "bg-transparent border-transparent"

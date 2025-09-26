@@ -7,6 +7,7 @@ import Logo from "../Logo";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   const pathname = usePathname();
@@ -42,7 +43,7 @@ const Header = () => {
         <Logo />
 
         {/* Navigation Links */}
-        <ul className="flex items-center text-sm justify-center gap-8">
+        <ul className=" items-center text-sm hidden lg:flex justify-center gap-8">
           {navLinks?.map((link, index) => (
             <li key={index} className="relative p-1">
               <Link
@@ -64,9 +65,9 @@ const Header = () => {
         </ul>
 
         {/* Buttons */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center max-lg:gap-5 gap-8 text-white">
           <button className="flex items-center gap-3">
-            <FaHeart /> Favourites
+            <FaHeart /> <span className="hidden lg:block">Favourites</span>
           </button>
           <button className="flex items-center relative gap-3">
             <span className="relative">
@@ -75,11 +76,14 @@ const Header = () => {
                 3
               </small>
             </span>{" "}
-            Cart
+            <span className="hidden lg:block">Cart</span>
           </button>
-          <button className="py-2 px-4 border border-gray-50 rounded-sm">
+
+          <button className="py-2 px-4 hidden lg:block border border-gray-50 rounded-sm">
             Sign in
           </button>
+
+          <Sidebar />
         </div>
       </nav>
     </header>

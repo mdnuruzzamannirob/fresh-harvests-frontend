@@ -35,7 +35,7 @@ const Banner = () => {
 
         {/* Offer Box */}
         <div className="w-full flex relative">
-          <div className="hidden md:flex w-1/4 relative justify-end">
+          <div className="hidden sm:block pl-40 relative">
             <Image
               alt="Fresh Vegetables"
               src="/arrow.svg"

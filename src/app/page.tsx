@@ -4,7 +4,6 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <div className="h-screen"></div>
     </>
   );
 };

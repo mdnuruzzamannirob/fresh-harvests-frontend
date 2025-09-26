@@ -65,7 +65,12 @@ const Header = () => {
         </ul>
 
         {/* Buttons */}
-        <div className="flex items-center max-lg:gap-5 gap-8 text-white">
+        <div
+          className={cn(
+            "flex items-center max-lg:gap-5 gap-8 ",
+            scrolled ? "text-inherit" : "text-white"
+          )}
+        >
           <button className="flex items-center gap-3">
             <FaHeart /> <span className="hidden lg:block">Favourites</span>
           </button>

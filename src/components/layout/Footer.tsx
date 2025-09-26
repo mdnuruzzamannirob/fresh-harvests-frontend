@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="bg-gray-20 border-t">
       <div className="container space-y-6 py-6">
         <div className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 gap-10">
-          <div className="flex flex-col gap-3 justify-between">
+          <div className="flex flex-col gap-5 justify-between">
             <Logo />
             <DownloadApp />
           </div>
@@ -77,7 +77,7 @@ const Footer = () => {
         {/* divider */}
         <div className="border w-full"></div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col-reverse sm:flex-row gap-3 items-center justify-between">
           <small className="font-medium">
             © 2024 Fresh Harvests. All rights reserved.
           </small>

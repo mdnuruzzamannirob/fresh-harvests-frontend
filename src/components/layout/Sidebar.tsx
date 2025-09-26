@@ -83,7 +83,7 @@ const Sidebar = () => {
   return (
     <Drawer direction="right" open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <button>
+        <button className="p-1 lg:hidden">
           <RiMenuFill className="text-base" />
         </button>
       </DrawerTrigger>

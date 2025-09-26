@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} antialiased`}
+        className={`${geistSans.className} ${geistMono.variable} ${rubik.variable} antialiased`}
       >
         <Header />
         {children}

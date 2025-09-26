@@ -42,7 +42,7 @@ const Header = () => {
         <Logo />
 
         {/* Navigation Links */}
-        <ul className="flex items-center justify-center gap-8">
+        <ul className="flex items-center text-sm justify-center gap-8">
           {navLinks?.map((link, index) => (
             <li key={index} className="relative p-1">
               <Link

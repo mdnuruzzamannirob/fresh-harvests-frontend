@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export type TProduct = {
@@ -15,11 +16,17 @@ export type TProduct = {
 
 type TProductCardProps = {
   product: TProduct;
+  className?: string;
 };
 
-const ProductCard = ({ product }: TProductCardProps) => {
+const ProductCard = ({ product, className }: TProductCardProps) => {
   return (
-    <div className="rounded-xl border border-gray-20 shadow-sm p-3 space-y-3">
+    <div
+      className={cn(
+        "rounded-xl border border-gray-20 shadow-lg p-3 space-y-3",
+        className
+      )}
+    >
       <div className="h-54 w-full bg-gray-20 rounded-xl">
         <Image
           src={product.images[0]}
@@ -29,7 +36,7 @@ const ProductCard = ({ product }: TProductCardProps) => {
           className="w-full h-54 object-cover rounded-xl"
         />
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2 text-center">
         <h1 className="text-lg font-medium font-rubik">
           {product.productName}
         </h1>

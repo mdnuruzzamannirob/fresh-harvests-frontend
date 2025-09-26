@@ -70,7 +70,7 @@ const ProductsSection = () => {
   ];
 
   return (
-    <div className="container py-24 flex items-center justify-center flex-col gap-5 text-center ">
+    <section className="container py-24 flex items-center justify-center flex-col gap-5 text-center ">
       <Badge>Our Products</Badge>
       <h2 className="max-sm:text-[8vw] text-4xl font-medium font-rubik">
         Our Fresh Products
@@ -104,7 +104,7 @@ const ProductsSection = () => {
       <button className="mt-4 py-2 px-4 border transition border-primary hover:bg-primary hover:text-white text-primary font-medium rounded-md">
         See All Products
       </button>
-    </div>
+    </section>
   );
 };
 

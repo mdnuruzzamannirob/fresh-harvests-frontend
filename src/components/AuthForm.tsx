@@ -78,16 +78,12 @@ const AuthForm = ({
   // Google/GitHub login handler
   const handleOAuthLogin = async (provider: "google" | "facebook") => {
     try {
-      const res = await signIn(provider, {
+      await signIn(provider, {
         callbackUrl: "/",
         redirect: false,
       });
-
-      // console.log(res);
-    } catch (err) {
-      console.log(err);
-      const message = err || "Something went wrong!";
-      alert(message);
+    } catch (err: any) {
+      toast.error(err?.message || "Something went wrong!");
     }
   };
 

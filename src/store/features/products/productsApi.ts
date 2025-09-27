@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { IApiResponse, IProduct } from "./types";
+import type { IApiResponse, ISingleApiResponse } from "./types";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -30,7 +30,7 @@ export const productsApi = createApi({
             ]
           : [{ type: "Product", id: "LIST" }],
     }),
-    getProduct: builder.query<IProduct, number>({
+    getProduct: builder.query<ISingleApiResponse, string>({
       query: (id) => `/products/${id}`,
       providesTags: (result, error, id) => [{ type: "Product", id }],
     }),

@@ -16,3 +16,8 @@ export interface IApiResponse {
   message: string;
   data: IProduct[];
 }
+export interface ISingleApiResponse {
+  success: boolean;
+  message: string;
+  data: IProduct;
+}

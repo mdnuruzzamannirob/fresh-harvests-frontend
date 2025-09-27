@@ -27,9 +27,7 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
           dispatch(setToken(data.data.token));
-        } catch (err) {
-          // console.error(err);
-        }
+        } catch (err) {}
       },
     }),
 
@@ -50,9 +48,7 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
           dispatch(setUser(data.data));
-        } catch (err) {
-          // console.error(err);
-        }
+        } catch (err) {}
       },
     }),
   }),

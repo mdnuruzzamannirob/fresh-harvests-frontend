@@ -1,5 +1,5 @@
 import { getProductServer } from "@/lib/getProductServer";
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "../../../components/products/ProductDetails";
 import { IProduct } from "@/store/features/products/types";
 import { getProductsServer } from "@/lib/getProductsServer";
 import { Metadata } from "next";

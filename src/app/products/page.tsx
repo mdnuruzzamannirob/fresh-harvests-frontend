@@ -1,7 +1,7 @@
 import { getCategoriesServer } from "@/lib/getCategoriesServer";
 import { getProductsServer } from "@/lib/getProductsServer";
 import { Metadata } from "next";
-import Products from "./Products";
+import Products from "../../components/products/Products";
 import Title from "@/components/Title";
 
 export const metadata: Metadata = {

@@ -14,7 +14,7 @@ Fresh Harvests is a modern, responsive grocery e-commerce frontend built with **
 - Redux Toolkit & RTK Query for global state and API handling
 - Cookies-based session persistence
 - SEO-ready metadata for product pages and home page
-- Integration with Radix UI and React Icons for accessible and modern UI components
+- Integration with Shadcn UI and React Icons for accessible and modern UI components
 
 ---
 
@@ -23,7 +23,8 @@ Fresh Harvests is a modern, responsive grocery e-commerce frontend built with **
 - **Frontend:** Next.js 15 (App Router)
 - **State Management:** Redux Toolkit, RTK Query
 - **Styling:** Tailwind CSS
-- **Authentication:** NextAuth.js (Google/Facebook)
+- **Animation:** Framer Motion
+- **Authentication:** NextAuth.js (Google/Facebook/Github)
 - **UI Components:** Shadcn UI, React Icons
 - **Utilities:** js-cookie, clsx
 - **TypeScript** for type safety
@@ -81,17 +82,19 @@ FACEBOOK_CLIENT_SECRET=facebook-client-secret
 /src
  /app
    /products/[id]     # Dynamic product pages
-   /home              # Home page
    layout.tsx         # Main layout with sidebar
+   page.ts            # Home page
  /components
-   /auth              # Auth form
+   /home              # Home section
    /products          # ProductCard & ProductDetails
    /ui                # Reusable UI components (Drawer, Dialog, Button)
  /store
    /features/auth     # Redux auth slice & types
+ /hooks               # Reusable hooks
  /lib                 # API calls (getProductsServer, getProductServer)
  /constants           # Sidebar menu items
  /types               # TypeScript interfaces
+ /styles              # Global CSS
 ```
 
 ## 🔑 Authentication Flow

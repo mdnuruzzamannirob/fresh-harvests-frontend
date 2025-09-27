@@ -69,7 +69,9 @@ const Header = () => {
               <span
                 className={cn(
                   "absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-1/2 rounded-full",
-                  pathname.includes(link.href) ? "bg-green" : "bg-transparent"
+                  pathname === "/" && link.href === "/"
+                    ? "bg-green"
+                    : "bg-transparent"
                 )}
               ></span>
             </li>

@@ -12,7 +12,7 @@ const DynamicProduct = async ({ params }: { params: { id: string } }) => {
   );
 
   return (
-    <main className="min-h-dvh space-y-10 container py-20 lg:py-28">
+    <main className="min-h-dvh space-y-10 container py-24 lg:py-32">
       <ProductDetails
         product={(product?.data as IProduct) || {}}
         data={newData?.slice(0, 4) || []}

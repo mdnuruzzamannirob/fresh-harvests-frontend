@@ -178,7 +178,7 @@ const ProductDetails = ({
         <Title
           badge="Our Products"
           title="Related Products"
-          description="Lorem ipsum dolor sit amet consectetur dolor sit amet  consectetur dolor consectetur adipisicing elit."
+          description="Fresh, natural, and full of flavor—our handpicked harvests bring wholesome goodness straight from the farm to your table."
         />
 
         <div className="w-full mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">

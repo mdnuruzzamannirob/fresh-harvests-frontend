@@ -13,8 +13,8 @@ export const sideItems: TSideItems[] = [
     icon: null,
   },
   {
-    name: "Contact Us",
-    path: "/contact-us",
+    name: "About Us",
+    path: "/about-us",
     icon: null,
   },
   {

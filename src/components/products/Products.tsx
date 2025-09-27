@@ -59,6 +59,7 @@ const Products = ({
         initial="hidden"
         whileInView="show"
         className="w-full mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+        key={tab}
       >
         {filteredProducts.length > 0 ? (
           filteredProducts?.map((product) => (

@@ -76,7 +76,7 @@ const Header = () => {
         <div
           className={cn(
             "flex items-center max-lg:gap-5 gap-8 ",
-            scrolled ? "text-inherit" : "text-white"
+            scrolled || pathname !== "/" ? "text-inherit" : "text-white"
           )}
         >
           <button className="flex items-center gap-3">
@@ -94,10 +94,11 @@ const Header = () => {
 
           <div className="hidden lg:block">
             <Dialog>
-              <DialogTrigger>
-                <button className="py-2 px-4 border border-gray-50 rounded-sm">
-                  Sign in
-                </button>
+              <DialogTrigger
+                asChild
+                className="py-2 px-4 border border-gray-50 rounded-sm"
+              >
+                Sign in
               </DialogTrigger>
               <DialogContent>
                 <VisuallyHidden>

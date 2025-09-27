@@ -4,6 +4,7 @@ import { useState } from "react";
 import Title from "../Title";
 import ProductCard from "../ProductCard";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const ProductsSection = () => {
   const [tab, setTab] = useState("all");
@@ -100,9 +101,12 @@ const ProductsSection = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <button className="mt-4 py-2 px-4 border transition border-primary hover:bg-primary hover:text-white text-primary font-medium rounded-md">
+      <Link
+        href="/products"
+        className="mt-4 py-2 px-4 border transition border-primary hover:bg-primary hover:text-white text-primary font-medium rounded-md"
+      >
         See All Products
-      </button>
+      </Link>
     </section>
   );
 };

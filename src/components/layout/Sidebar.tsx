@@ -118,10 +118,11 @@ const Sidebar = () => {
           {/* Push Sign-in button to bottom */}
           <div className={isLoggedIn ? "hidden" : "mt-auto p-4"}>
             <Dialog>
-              <DialogTrigger className="w-full">
-                <button className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm">
-                  Sign in
-                </button>
+              <DialogTrigger
+                asChild
+                className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm"
+              >
+                Sign in
               </DialogTrigger>
               <DialogContent>
                 <VisuallyHidden>

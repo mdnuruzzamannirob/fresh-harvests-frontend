@@ -9,6 +9,7 @@
   --gray100: #4a4a52;
   --gray80: #a6a6a6;
   --gray50: #d9d9d9;
+  --gray30: #ebebeb;
   --gray20: #f4f6f6;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -51,6 +52,7 @@
   --color-gray-100: var(--gray100);
   --color-gray-80: var(--gray80);
   --color-gray-50: var(--gray50);
+  --color-gray-30: var(--gray30);
   --color-gray-20: var(--gray20);
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);

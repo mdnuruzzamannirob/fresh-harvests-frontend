@@ -1,6 +1,6 @@
 import Image from "next/image";
-import DownloadApp from "./DownloadApp";
-import Badge from "./Badge";
+import Badge from "../Badge";
+import DownloadApp from "../DownloadApp";
 
 const Banner = () => {
   return (
@@ -43,7 +43,7 @@ const Banner = () => {
               className="scale-x-[-1] absolute rounded-full -top-8 right-0 -rotate-45"
             />
           </div>
-          <div className="bg-[#EBEBEB] flex w-fit gap-5 items-center rounded-xl max-sm:px-3 px-5 py-3">
+          <div className="bg-gray-30 flex w-fit gap-5 items-center rounded-xl max-sm:px-3 px-5 py-3">
             <div className="font-rubik leading-tight">
               <p className="text-sm max-sm:text-xs text-[#176D38] font-semibold">
                 Special Offer

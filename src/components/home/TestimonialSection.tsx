@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { testimonialData } from "@/constants";
-import Title from "./Title";
+import Title from "../Title";
 
 const TestimonialSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

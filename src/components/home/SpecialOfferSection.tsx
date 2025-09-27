@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Badge from "./Badge";
+import Badge from "../Badge";
 
 const SpecialOfferSection = () => {
   return (

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import ProductCard from "./ProductCard";
-import Title from "./Title";
+import Title from "../Title";
+import ProductCard from "../ProductCard";
+import { cn } from "@/lib/utils";
 
 const ProductsSection = () => {
   const [tab, setTab] = useState("all");
@@ -82,11 +83,12 @@ const ProductsSection = () => {
           <button
             onClick={() => setTab(item.value)}
             key={index}
-            className={`text-sm font-medium border max-sm:text-xs max-sm:py-[6px] max-sm:px-3 px-4 py-2 rounded-sm ${
+            className={cn(
+              "text-sm font-medium border max-sm:text-xs max-sm:py-[6px] max-sm:px-3 px-4 py-2 rounded-sm",
               tab === item.value
                 ? "bg-green text-white border-b-2 border-green "
                 : "text-gray-100 border-gray-50"
-            }`}
+            )}
           >
             {item.name}
           </button>

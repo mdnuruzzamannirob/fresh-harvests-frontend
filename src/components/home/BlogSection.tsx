@@ -1,6 +1,6 @@
 import { blogPosts } from "@/constants";
-import BlogCard from "./BlogCard";
-import Title from "./Title";
+import BlogCard from "../BlogCard";
+import Title from "../Title";
 
 const BlogSection = () => {
   return (

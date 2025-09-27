@@ -16,11 +16,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { useAppSelector } from "@/store/hooks";
 
 const Header = () => {
+  const { token } = useAppSelector((state) => state?.auth);
+
   const pathname = usePathname();
 
   const [scrolled, setScrolled] = useState(false);
+  const [isClose, setIsClose] = useState(false);
 
   useEffect(() => {
     const handleScrolled = () => {
@@ -91,20 +95,20 @@ const Header = () => {
             </span>{" "}
             <span className="hidden lg:block">Cart</span>
           </button>
-          <div className="hidden lg:block">
-            <Dialog>
-              <DialogTrigger
-                asChild
-                className="py-2 px-4 border border-gray-50 rounded-sm"
-              >
-                Sign in
+
+          <div className={token ? "hidden" : "hidden lg:block"}>
+            <Dialog open={isClose} onOpenChange={setIsClose}>
+              <DialogTrigger asChild>
+                <button className="py-2 px-4 border border-gray-50 rounded-sm">
+                  Sign in
+                </button>
               </DialogTrigger>
               <DialogContent>
                 <VisuallyHidden>
                   <DialogTitle />
                 </VisuallyHidden>
 
-                <AuthForm />
+                <AuthForm setIsClose={setIsClose} />
               </DialogContent>
             </Dialog>
           </div>

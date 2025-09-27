@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import FormField from "./FormField";
 import { FaFacebook } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
@@ -8,35 +8,70 @@ import { signIn } from "next-auth/react";
 import { IoCheckbox, IoCheckboxOutline } from "react-icons/io5";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import {
+  authApi,
   useLoginMutation,
   useRegisterMutation,
 } from "@/store/features/auth/authApi";
+import { toast } from "sonner";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setLoading } from "@/store/features/auth/authSlice";
 
-const AuthForm = () => {
+const AuthForm = ({
+  setIsClose,
+}: {
+  setIsClose: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const { loading: isLoginLoading } = useAppSelector((state) => state?.auth);
+
   const [type, setType] = useState("login");
   const [showPass, setShowPass] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const [login, { isLoading: isLoginError, error: loginError }] =
-    useLoginMutation();
-  const [register, { isLoading: isRegisterError, error: registerError }] =
-    useRegisterMutation();
-
-  console.log({ isLoginError, isRegisterError, loginError, registerError });
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+  const [register, { isLoading: isRegisterLoading }] = useRegisterMutation();
 
   // Manual Login/Register handler
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(setLoading(true));
     const form = e.currentTarget as HTMLFormElement;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const password = (form.elements.namedItem("password") as HTMLInputElement)
       .value;
-    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value;
+    const fullName = (form.elements.namedItem("fullName") as HTMLInputElement)
+      ?.value;
 
-    if (type === "login") {
-      await login({ email, password });
-    } else {
-      await register({ email, name, password });
+    try {
+      if (type === "login") {
+        await login({ email, password }).unwrap();
+        await dispatch(
+          authApi.endpoints.getProfile.initiate(undefined, {
+            forceRefetch: true,
+            subscribe: false,
+          })
+        ).unwrap();
+
+        toast.success("Login Successful", {});
+        setIsClose?.(false);
+      } else {
+        await register({ email, fullName, password }).unwrap();
+
+        toast.success("Account Created", {
+          description: "You can now log in with your new account.",
+        });
+        form.reset();
+        setType("login");
+      }
+    } catch (err: any) {
+      toast.error("Oops! Something went wrong", {
+        description:
+          err?.data?.message ||
+          err?.error ||
+          "Please check your credentials and try again.",
+      });
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 
@@ -44,11 +79,11 @@ const AuthForm = () => {
   const handleOAuthLogin = async (provider: "google" | "facebook") => {
     try {
       const res = await signIn(provider, {
-        // callbackUrl: "/",
-        // redirect: false,
+        callbackUrl: "/",
+        redirect: false,
       });
 
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       console.log(err);
       const message = err || "Something went wrong!";
@@ -63,6 +98,7 @@ const AuthForm = () => {
         id="email"
         type="email"
         placeholder="Enter your email"
+        required
       />
       <div className="relative">
         <FormField
@@ -70,8 +106,10 @@ const AuthForm = () => {
           id="password"
           type={showPass ? "text" : "password"}
           placeholder="Enter your password"
+          required
         />
         <button
+          type="button"
           onClick={() => setShowPass(!showPass)}
           className="absolute right-5 top-9 size-3"
         >
@@ -101,9 +139,10 @@ const AuthForm = () => {
 
       <button
         type="submit"
+        disabled={isLoginLoading}
         className="w-full mt-4 bg-primary text-white py-[9px] rounded-sm hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
       >
-        Login
+        {isLoginLoading ? "Login in..." : "Login"}
       </button>
     </form>
   );
@@ -112,15 +151,17 @@ const AuthForm = () => {
     <form onSubmit={onSubmit} className="flex flex-col gap-1">
       <FormField
         label="Full Name"
-        id="name"
+        id="fullName"
         type="text"
         placeholder="Enter your name"
+        required
       />
       <FormField
         label="Email"
         id="email"
         type="email"
         placeholder="Enter your email"
+        required
       />
       <div className="relative">
         <FormField
@@ -128,8 +169,10 @@ const AuthForm = () => {
           id="password"
           type={showPass ? "text" : "password"}
           placeholder="Enter your password"
+          required
         />
         <button
+          type="button"
           onClick={() => setShowPass(!showPass)}
           className="absolute right-5 top-9 size-3"
         >
@@ -143,9 +186,10 @@ const AuthForm = () => {
 
       <button
         type="submit"
+        disabled={isRegisterLoading}
         className="w-full bg-primary text-white py-[9px] rounded-sm hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
       >
-        Register
+        {isLoginLoading ? "Registering..." : "Register"}
       </button>
     </form>
   );

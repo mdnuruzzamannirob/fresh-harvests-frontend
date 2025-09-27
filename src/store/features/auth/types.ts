@@ -6,4 +6,5 @@ export interface IUser {
 export interface IAuthState {
   token: string | null;
   user: IUser | null;
+  loading: boolean;
 }

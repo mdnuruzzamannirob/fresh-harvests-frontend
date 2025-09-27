@@ -13,6 +13,7 @@ interface InputProps<TFormValues extends FieldValues> {
   id: Path<TFormValues>;
   type?: string;
   placeholder?: string;
+  required?: boolean;
   register?: UseFormRegister<TFormValues>;
   errors?: FieldErrors<TFormValues>;
 }
@@ -22,6 +23,7 @@ function FormField<TFormValues extends FieldValues>({
   id,
   type = "text",
   placeholder,
+  required = false,
   register,
   errors,
 }: InputProps<TFormValues>) {
@@ -36,6 +38,7 @@ function FormField<TFormValues extends FieldValues>({
         id={id as string}
         type={type}
         placeholder={placeholder}
+        required={required}
         {...(register ? register(id) : {})}
         className={cn(
           "w-full px-3 py-[10px] border text-sm border-neutral-200 shadow-2xs rounded-sm outline-none focus:ring-2 focus:border-transparent focus:ring-primary",

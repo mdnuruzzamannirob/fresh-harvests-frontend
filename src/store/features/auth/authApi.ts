@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logout } from "./authSlice";
-import { IUser } from "./types";
+import { setToken, setUser } from "./authSlice";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -12,15 +11,13 @@ export const authApi = createApi({
     baseUrl,
     prepareHeaders: (headers, { getState }: any) => {
       const token = (getState() as any).auth?.token;
-      if (token) headers.set("authorization", `Bearer ${token}`);
+      if (token) headers.set("authorization", `${token}`);
       return headers;
     },
   }),
+
   endpoints: (builder) => ({
-    login: builder.mutation<
-      { token: string; user: IUser },
-      { email: string; password: string }
-    >({
+    login: builder.mutation<any, { email: string; password: string }>({
       query: (credentials) => ({
         url: "/auth/login",
         method: "POST",
@@ -29,19 +26,37 @@ export const authApi = createApi({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setCredentials(data));
-        } catch {
-          dispatch(logout());
+          dispatch(setToken(data.data.token));
+        } catch (err) {
+          // console.error(err);
         }
       },
     }),
+
     register: builder.mutation<
-      any,
-      { name: string; email: string; password: string }
+      { user: any },
+      { fullName: string; email: string; password: string }
     >({
-      query: (body) => ({ url: "/auth/register", method: "POST", body }),
+      query: (userData) => ({
+        url: "/users/register",
+        method: "POST",
+        body: userData,
+      }),
+    }),
+
+    getProfile: builder.query<any, void>({
+      query: () => "/auth/profile",
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data.data));
+        } catch (err) {
+          // console.error(err);
+        }
+      },
     }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useGetProfileQuery } =
+  authApi;

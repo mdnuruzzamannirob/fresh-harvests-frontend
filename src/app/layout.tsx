@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import ReduxProvider from "@/providers/ReduxProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,28 +32,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 1) If token stored in cookie (httpOnly) read it on server:
-  // const tokenFromCookie = (await cookies()).get("token")?.value ?? null;
-
-  // 2) create store with preloaded auth token so baseQuery can use it during SSR
-  // const preloaded = tokenFromCookie
-  //   ? { auth: { token: tokenFromCookie, user: null } }
-  //   : undefined;
-  // const store = makeStore(preloaded);
-
-  // 3) dispatch the API calls you want prefetched on server
-  // store.dispatch(usersApi.endpoints.getUsers.initiate());
-  // if you want auth data prefetched, dispatch relevant endpoints too
-  // store.dispatch(authApi.endpoints.somePrefetch.initiate())
-
-  // 4) wait for all initiated queries to settle (per-api util thunk)
-  // await Promise.all([
-  // store.dispatch(usersApi.util.getRunningQueriesThunk()),
-  // store.dispatch(authApi.util.getRunningQueriesThunk()),
-  // ]);
-
-  // 5) extract state and pass as initialState to client provider
-  // const state = store.getState();
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -64,6 +43,7 @@ export default async function RootLayout({
             <Header />
             {children}
             <Footer />
+            <Toaster closeButton richColors />
           </NextAuthProvider>
         </ReduxProvider>
       </body>

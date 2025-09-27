@@ -26,6 +26,7 @@ import {
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const [isClose, setIsClose] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
 
   const pathname = usePathname();
@@ -117,18 +118,18 @@ const Sidebar = () => {
 
           {/* Push Sign-in button to bottom */}
           <div className={isLoggedIn ? "hidden" : "mt-auto p-4"}>
-            <Dialog>
-              <DialogTrigger
-                asChild
-                className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm"
-              >
-                Sign in
+            <Dialog open={isClose} onOpenChange={setIsClose}>
+              <DialogTrigger asChild>
+                <button className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm">
+                  {" "}
+                  Sign in
+                </button>
               </DialogTrigger>
               <DialogContent>
                 <VisuallyHidden>
                   <DialogTitle />
                 </VisuallyHidden>
-                <AuthForm />
+                <AuthForm setIsClose={setIsClose} />
               </DialogContent>
             </Dialog>
           </div>

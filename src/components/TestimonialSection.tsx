@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Badge from "./Badge";
 import { testimonialData } from "@/constants";
+import Title from "./Title";
 
 const TestimonialSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,17 +24,12 @@ const TestimonialSection = () => {
   return (
     <section className="relative bg-white py-20">
       <div className="container space-y-10">
-        <div className="flex flex-col items-center text-center space-y-5">
-          <Badge>Testimonial</Badge>
-
-          <h2 className="max-sm:text-[7vw] text-4xl font-medium font-rubik">
-            What Our Customers Say
-          </h2>
-          <p className="text-gray-500 max-w-md text-sm">
-            Don&apos;t just take our word for it—here&apos;s what some of our
-            customers have to say about their experience with Fresh Harvest:
-          </p>
-        </div>
+        <Title
+          badge="Testimonial"
+          description="Don't just take our word for it—here's what some of our
+            customers have to say about their experience with Fresh Harvest:"
+          title="  What Our Customers Say"
+        />
 
         <div className="flex items-center lg:flex-row flex-col justify-between lg:gap-20 gap-10  relative overflow-hidden min-h-96">
           <AnimatePresence mode="wait">

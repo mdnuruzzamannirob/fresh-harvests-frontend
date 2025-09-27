@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Badge from "./Badge";
 import ProductCard from "./ProductCard";
+import Title from "./Title";
 
 const ProductsSection = () => {
   const [tab, setTab] = useState("all");
@@ -71,14 +71,11 @@ const ProductsSection = () => {
 
   return (
     <section className="container py-24 flex items-center justify-center flex-col gap-5 text-center ">
-      <Badge>Our Products</Badge>
-      <h2 className="max-sm:text-[8vw] text-4xl font-medium font-rubik">
-        Our Fresh Products
-      </h2>
-      <p className="text-gray-100 max-w-xs text-sm">
-        We offer a wide variety of fresh and frozen fruits, vegetables, and
-        salad ingredients.
-      </p>
+      <Title
+        badge="Our Products"
+        description="We offer a wide variety of fresh and frozen fruits, vegetables, and salad ingredients."
+        title="Our Fresh Products"
+      />
 
       <div className="flex items-center justify-center max-sm:gap-2 gap-5">
         {tabData.map((item, index) => (

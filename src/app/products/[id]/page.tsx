@@ -2,8 +2,36 @@ import { getProductServer } from "@/lib/getProductServer";
 import ProductDetails from "./ProductDetails";
 import { IProduct } from "@/store/features/products/types";
 import { getProductsServer } from "@/lib/getProductsServer";
+import { Metadata } from "next";
 
-const DynamicProduct = async ({ params }: { params: { id: string } }) => {
+type Props = {
+  params: { id: string };
+};
+
+// Dynamic Metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { data: product } = await getProductServer(params.id);
+
+  if (!product?.data) {
+    return {
+      title: "Product Not Found | Fresh Harvests",
+      description: "The product you are looking for does not exist.",
+    };
+  }
+
+  return {
+    title: `${product.data.productName} Price & Details | Fresh Harvests`,
+    description:
+      product.data.description?.slice(0, 160) ||
+      "Product details and features.",
+    openGraph: {
+      title: product.data.productName,
+      description: product.data.description?.slice(0, 160),
+    },
+  };
+}
+
+const DynamicProduct = async ({ params }: Props) => {
   const { data: product } = await getProductServer(params.id);
   const { data: products } = await getProductsServer();
 
@@ -21,4 +49,5 @@ const DynamicProduct = async ({ params }: { params: { id: string } }) => {
     </main>
   );
 };
+
 export default DynamicProduct;

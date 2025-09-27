@@ -16,6 +16,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { TSideItems } from "@/types";
 import { sideItems } from "@/constants/sideItems";
+import AuthForm from "../AuthForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
@@ -23,6 +30,7 @@ const Sidebar = () => {
 
   const pathname = usePathname();
   const router = useRouter();
+  const isLoggedIn = false;
 
   const handleNavigation = (path: string | null) => {
     if (path) {
@@ -91,18 +99,39 @@ const Sidebar = () => {
         <VisuallyHidden>
           <DrawerTitle></DrawerTitle>
         </VisuallyHidden>
-        <div className="flex items-center justify-between border-b p-4">
-          <Logo />
 
-          <button aria-label="Close menu" onClick={() => setOpen(false)}>
-            <IoCloseOutline className="size-5" />
-          </button>
+        {/* Make drawer content flex-col full height */}
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b p-4">
+            <Logo />
+            <button aria-label="Close menu" onClick={() => setOpen(false)}>
+              <IoCloseOutline className="size-5" />
+            </button>
+          </div>
+
+          {/* Navigation Items */}
+          <nav className="p-4">
+            <ul className="space-y-1">{renderMenuItems(sideItems)}</ul>
+          </nav>
+
+          {/* Push Sign-in button to bottom */}
+          <div className={isLoggedIn ? "hidden" : "mt-auto p-4"}>
+            <Dialog>
+              <DialogTrigger className="w-full">
+                <button className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm">
+                  Sign in
+                </button>
+              </DialogTrigger>
+              <DialogContent>
+                <VisuallyHidden>
+                  <DialogTitle />
+                </VisuallyHidden>
+                <AuthForm />
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
-
-        {/* Navigation Items */}
-        <nav className=" p-4">
-          <ul className="space-y-1">{renderMenuItems(sideItems)}</ul>
-        </nav>
       </DrawerContent>
     </Drawer>
   );

@@ -8,6 +8,14 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import AuthForm from "../AuthForm";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 const Header = () => {
   const pathname = usePathname();
@@ -84,9 +92,22 @@ const Header = () => {
             <span className="hidden lg:block">Cart</span>
           </button>
 
-          <button className="py-2 px-4 hidden lg:block border border-gray-50 rounded-sm">
-            Sign in
-          </button>
+          <div className="hidden lg:block">
+            <Dialog>
+              <DialogTrigger>
+                <button className="py-2 px-4 border border-gray-50 rounded-sm">
+                  Sign in
+                </button>
+              </DialogTrigger>
+              <DialogContent>
+                <VisuallyHidden>
+                  <DialogTitle />
+                </VisuallyHidden>
+
+                <AuthForm />
+              </DialogContent>
+            </Dialog>
+          </div>
 
           <Sidebar />
         </div>

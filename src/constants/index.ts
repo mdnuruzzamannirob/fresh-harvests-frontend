@@ -48,3 +48,26 @@ export const testimonialData = [
     image: "/review3.png",
   },
 ];
+
+export const blogPosts = [
+  {
+    image: "/blog1.jpeg",
+    date: "May 23, 2024",
+    title: "Exploring Seasonal Delights: A Guide to What's Fresh Right Now",
+    link: "#",
+  },
+  {
+    image: "/blog2.webp",
+    date: "May 23, 2024",
+    title:
+      'Mastering Salad Creations: Tips and Tricks for Building Delicious and Nutritious Salads"',
+    link: "#",
+  },
+  {
+    image: "/blog3.webp",
+    date: "May 23, 2024",
+    title:
+      "The Art of Meal Prepping: How to Save Time and Eat Healthy Throughout the Week",
+    link: "#",
+  },
+];

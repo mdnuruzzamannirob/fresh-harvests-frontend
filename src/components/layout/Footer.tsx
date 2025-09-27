@@ -9,7 +9,7 @@ import Logo from "../Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-20 border-t">
+    <footer className="bg-gray-20 ">
       <div className="container space-y-6 py-6">
         <div className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 gap-10">
           <div className="flex flex-col gap-5 justify-between">

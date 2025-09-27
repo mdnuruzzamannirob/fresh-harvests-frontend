@@ -9,7 +9,7 @@ export const sideItems: TSideItems[] = [
   },
   {
     name: "Shop",
-    path: "/shop",
+    path: "/products",
     icon: null,
   },
   {

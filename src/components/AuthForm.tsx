@@ -14,7 +14,8 @@ import {
 } from "@/store/features/auth/authApi";
 import { toast } from "sonner";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setLoading } from "@/store/features/auth/authSlice";
+import { setLoading, setToken, setUser } from "@/store/features/auth/authSlice";
+import Cookies from "js-cookie";
 
 const AuthForm = ({
   setIsClose,
@@ -78,10 +79,22 @@ const AuthForm = ({
   // Google/GitHub login handler
   const handleOAuthLogin = async (provider: "google" | "facebook") => {
     try {
-      await signIn(provider, {
-        callbackUrl: "/",
-        redirect: false,
-      });
+      // await signIn(provider, { redirect: false });
+      // if (res?.error) {
+      //   toast.error(res.error);
+      //   return;
+      // }
+      // const token = res?.token;
+      // const user = res?.user;
+      // if (token) {
+      //   dispatch(setToken(token));
+      //   dispatch(setUser(user));
+      //   Cookies.set("token", token, {
+      //     expires: 7,
+      //     secure: true,
+      //     sameSite: "Strict",
+      //   });
+      // }
     } catch (err: any) {
       toast.error(err?.message || "Something went wrong!");
     }

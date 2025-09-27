@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ICategory } from "./types";
+import { IApiResponse, ICategory } from "./types";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -9,16 +9,23 @@ export const categoriesApi = createApi({
   reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({
     baseUrl,
-    credentials: "include",
+    prepareHeaders: (headers, { getState }: any) => {
+      const token = (getState() as any).auth?.token;
+      if (token) headers.set("authorization", `${token}`);
+      return headers;
+    },
   }),
   tagTypes: ["Category"],
   endpoints: (builder) => ({
-    getCategories: builder.query<ICategory[], void>({
+    getCategories: builder.query<IApiResponse, void>({
       query: () => "/category",
       providesTags: (result) =>
-        result
+        result?.data
           ? [
-              ...result.map(({ id }) => ({ type: "Category" as const, id })),
+              ...result.data.map(({ id }) => ({
+                type: "Category" as const,
+                id,
+              })),
               { type: "Category", id: "LIST" },
             ]
           : [{ type: "Category", id: "LIST" }],

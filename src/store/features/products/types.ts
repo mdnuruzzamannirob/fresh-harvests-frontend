@@ -10,3 +10,9 @@ export interface IProduct {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IApiResponse {
+  success: boolean;
+  message: string;
+  data: IProduct[];
+}

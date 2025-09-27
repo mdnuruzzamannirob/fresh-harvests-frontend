@@ -4,7 +4,7 @@ import { authApi } from "@/store/features/auth/authApi";
 import { categoriesApi } from "./features/categories/categoriesApi";
 import { productsApi } from "./features/products/productsApi";
 
-export const makeStore = () => {
+export const makeStore = (preloadedState = {}) => {
   return configureStore({
     reducer: {
       auth: authReducer,
@@ -17,6 +17,7 @@ export const makeStore = () => {
         .concat(authApi.middleware)
         .concat(categoriesApi.middleware)
         .concat(productsApi.middleware),
+    preloadedState,
   });
 };
 

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { IProduct } from "./types";
+import type { IApiResponse, IProduct } from "./types";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -9,16 +9,23 @@ export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
     baseUrl,
-    credentials: "include",
+    prepareHeaders: (headers, { getState }: any) => {
+      const token = (getState() as any).auth?.token;
+      if (token) headers.set("authorization", `${token}`);
+      return headers;
+    },
   }),
   tagTypes: ["Product"],
   endpoints: (builder) => ({
-    getProducts: builder.query<IProduct[], void>({
+    getProducts: builder.query<IApiResponse, void>({
       query: () => "/products",
       providesTags: (result) =>
-        result
+        result?.data
           ? [
-              ...result.map(({ id }) => ({ type: "Product" as const, id })),
+              ...result.data.map(({ id }) => ({
+                type: "Product" as const,
+                id,
+              })),
               { type: "Product", id: "LIST" },
             ]
           : [{ type: "Product", id: "LIST" }],

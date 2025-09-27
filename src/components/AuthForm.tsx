@@ -7,14 +7,25 @@ import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { IoCheckbox, IoCheckboxOutline } from "react-icons/io5";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from "@/store/features/auth/authApi";
 
 const AuthForm = () => {
   const [type, setType] = useState("login");
   const [showPass, setShowPass] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const [login, { isLoading: isLoginError, error: loginError }] =
+    useLoginMutation();
+  const [register, { isLoading: isRegisterError, error: registerError }] =
+    useRegisterMutation();
+
+  console.log({ isLoginError, isRegisterError, loginError, registerError });
+
   // Manual Login/Register handler
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
@@ -22,21 +33,22 @@ const AuthForm = () => {
       .value;
     const name = (form.elements.namedItem("name") as HTMLInputElement)?.value;
 
-    console.log({ email, name, password, rememberMe });
-    //    if (type === "login") {
-    //      dispatch(loginUser({ email, password }));
-    //    } else {
-    //      dispatch(registerUser({ name, email, password }));
-    //    }
+    if (type === "login") {
+      await login({ email, password });
+    } else {
+      await register({ email, name, password });
+    }
   };
 
   // Google/GitHub login handler
   const handleOAuthLogin = async (provider: "google" | "facebook") => {
     try {
-      await signIn(provider, {
-        callbackUrl: "/",
-        redirect: false,
+      const res = await signIn(provider, {
+        // callbackUrl: "/",
+        // redirect: false,
       });
+
+      console.log(res);
     } catch (err) {
       console.log(err);
       const message = err || "Something went wrong!";

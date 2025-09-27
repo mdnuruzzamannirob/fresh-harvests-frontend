@@ -91,7 +91,6 @@ const Header = () => {
             </span>{" "}
             <span className="hidden lg:block">Cart</span>
           </button>
-
           <div className="hidden lg:block">
             <Dialog>
               <DialogTrigger

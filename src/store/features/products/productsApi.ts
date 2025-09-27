@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { IApiResponse, ISingleApiResponse } from "./types";
+import Cookies from "js-cookie";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -9,9 +10,13 @@ export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
     baseUrl,
-    prepareHeaders: (headers, { getState }: any) => {
+    prepareHeaders: (headers, { getState }) => {
       const token = (getState() as any).auth?.token;
-      if (token) headers.set("authorization", `${token}`);
+      const cookieToken = Cookies.get("token");
+
+      if (token) headers.set("Authorization", `${token}`);
+      else if (cookieToken) headers.set("Authorization", `${cookieToken}`);
+
       return headers;
     },
   }),

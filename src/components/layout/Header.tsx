@@ -17,6 +17,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { useAppSelector } from "@/store/hooks";
+import UserMenu from "../UserMenu";
 
 const Header = () => {
   const { token } = useAppSelector((state) => state?.auth);
@@ -98,6 +99,7 @@ const Header = () => {
             <span className="hidden lg:block">Cart</span>
           </button>
 
+          <UserMenu />
           <div className={token ? "hidden" : "hidden lg:block"}>
             <Dialog open={isClose} onOpenChange={setIsClose}>
               <DialogTrigger asChild>

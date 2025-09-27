@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { Toaster } from "@/components/ui/sonner";
+import { getProfileServer } from "@/lib/getProfileServer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await getProfileServer();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body

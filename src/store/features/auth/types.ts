@@ -1,6 +1,11 @@
 export interface IUser {
   id: string;
-  name: string;
+  fullName: string;
+  email: string;
+  profileImage: string;
+  phoneNumber: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IAuthState {

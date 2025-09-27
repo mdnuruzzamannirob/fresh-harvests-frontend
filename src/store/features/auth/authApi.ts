@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setToken, setUser } from "./authSlice";
+import Cookies from "js-cookie";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -9,9 +10,13 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl,
-    prepareHeaders: (headers, { getState }: any) => {
+    prepareHeaders: (headers, { getState }) => {
       const token = (getState() as any).auth?.token;
-      if (token) headers.set("authorization", `${token}`);
+      const cookieToken = Cookies.get("token");
+
+      if (token) headers.set("Authorization", `${token}`);
+      else if (cookieToken) headers.set("Authorization", `${cookieToken}`);
+
       return headers;
     },
   }),
@@ -27,6 +32,13 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
           dispatch(setToken(data.data.token));
+
+          Cookies.set("token", data.data.token, {
+            expires: 7,
+            secure: true,
+            sameSite: "Strict",
+            path: "/",
+          });
         } catch (err) {}
       },
     }),
@@ -48,6 +60,9 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
           dispatch(setUser(data.data));
+
+          const cookieToken = Cookies.get("token");
+          if (cookieToken) dispatch(setToken(cookieToken));
         } catch (err) {}
       },
     }),

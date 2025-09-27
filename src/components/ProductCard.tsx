@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 export type TProduct = {
   id: string;
@@ -27,7 +28,10 @@ const ProductCard = ({ product, className }: TProductCardProps) => {
         className
       )}
     >
-      <div className="h-54 w-full bg-gray-20 rounded-xl">
+      <Link
+        href={`/products/${product.id}`}
+        className="h-54 w-full bg-gray-20 rounded-xl"
+      >
         <Image
           src={product.images[0]}
           alt={product.productName}
@@ -35,11 +39,13 @@ const ProductCard = ({ product, className }: TProductCardProps) => {
           height={240}
           className="w-full h-54 object-cover rounded-xl"
         />
-      </div>
+      </Link>
       <div className="space-y-2 text-center">
-        <h1 className="text-lg font-medium font-rubik">
-          {product.productName}
-        </h1>
+        <Link href={`/products/${product.id}`}>
+          <h1 className="text-lg font-medium font-rubik">
+            {product.productName}
+          </h1>
+        </Link>
         <p>$ {product.price}</p>
         <button className="w-full py-2 px-4 border border-gray-50 hover:bg-primary font-medium hover:border-primary hover:text-white transition rounded-md">
           Add to Cart

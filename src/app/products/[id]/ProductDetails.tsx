@@ -80,7 +80,7 @@ const ProductDetails = ({
             <div className="flex text-yellow-500 text-lg">{"★★★★★"}</div>
             <span className=" font-rubik font-medium">5.0</span>
             <span className="text-sm text-gray-100">
-              (1 review{1 > 1 ? "s" : ""}) // !!! TODO
+              (0 reviews{1 > 1 ? "s" : ""})
             </span>
           </div>
           <p className="text-2xl font-semibold font-rubik text-primary">

@@ -23,15 +23,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { logout } from "@/store/features/auth/authSlice";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
+  const { token, user } = useAppSelector((state) => state?.auth);
+
   const [open, setOpen] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
 
   const pathname = usePathname();
   const router = useRouter();
-  const isLoggedIn = false;
+  const dispatch = useAppDispatch();
 
   const handleNavigation = (path: string | null) => {
     if (path) {
@@ -101,7 +106,6 @@ const Sidebar = () => {
           <DrawerTitle></DrawerTitle>
         </VisuallyHidden>
 
-        {/* Make drawer content flex-col full height */}
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between border-b p-4">
@@ -116,22 +120,53 @@ const Sidebar = () => {
             <ul className="space-y-1">{renderMenuItems(sideItems)}</ul>
           </nav>
 
-          {/* Push Sign-in button to bottom */}
-          <div className={isLoggedIn ? "hidden" : "mt-auto p-4"}>
-            <Dialog open={isClose} onOpenChange={setIsClose}>
-              <DialogTrigger asChild>
-                <button className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm">
-                  {" "}
-                  Sign in
+          {/* User Section */}
+          <div className="mt-auto p-4 border-t">
+            {user && token ? (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  {/* User Icon */}
+                  <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-bold">
+                    {user.fullName?.[0]?.toUpperCase() || "U"}
+                  </div>
+                  {/* User Info */}
+                  <div className="flex flex-col">
+                    <span className="font-medium">
+                      {user.fullName || "Name not found"}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      {user.email}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Logout Button */}
+                <button
+                  onClick={() => {
+                    dispatch(logout());
+                    Cookies.remove("token");
+                    setOpen(false);
+                  }}
+                  className="mt-2 py-2 px-4 w-full bg-red-500 text-white rounded-sm hover:bg-red-600 transition-colors"
+                >
+                  Logout
                 </button>
-              </DialogTrigger>
-              <DialogContent>
-                <VisuallyHidden>
-                  <DialogTitle />
-                </VisuallyHidden>
-                <AuthForm setIsClose={setIsClose} />
-              </DialogContent>
-            </Dialog>
+              </div>
+            ) : (
+              <Dialog open={isClose} onOpenChange={setIsClose}>
+                <DialogTrigger asChild>
+                  <button className="py-2 px-4 border w-full flex items-center justify-center border-gray-50 rounded-sm">
+                    Sign in
+                  </button>
+                </DialogTrigger>
+                <DialogContent>
+                  <VisuallyHidden>
+                    <DialogTitle />
+                  </VisuallyHidden>
+                  <AuthForm setIsClose={setIsClose} />
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         </div>
       </DrawerContent>

@@ -15,10 +15,10 @@ const BlogSection = () => {
         {blogPosts?.map((post, index) => (
           <BlogCard
             key={index}
-            image={post.image}
-            date={post.date}
-            title={post.title}
-            link={post.link}
+            image={post?.image}
+            date={post?.date}
+            title={post?.title}
+            link={post?.link}
           />
         ))}
       </div>

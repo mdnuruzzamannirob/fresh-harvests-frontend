@@ -6,6 +6,7 @@ import SpecialOfferSection from "@/components/home/SpecialOfferSection";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import { getCategoriesServer } from "@/lib/getCategoriesServer";
 import { getProductsServer } from "@/lib/getProductsServer";
+import { Metadata } from "next";
 
 const Home = async () => {
   const { data: products } = await getProductsServer();

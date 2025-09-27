@@ -5,10 +5,10 @@ import DownloadApp from "../DownloadApp";
 const Banner = () => {
   return (
     <section className="relative min-h-dvh flex items-center bg-gray-20 max-sm:py-16  py-24 overflow-hidden">
-      {/* Background only on the right side */}
+      {/* Rise Side Background */}
       <div className="absolute top-0 right-0 h-full w-4/11 bg-no-repeat bg-cover bg-right max-sm:w-1/3 bg-[url('/bg.jpeg')]" />
 
-      {/* Banner Image floating on bottom-right of section */}
+      {/* Floating Banner Image */}
       <Image
         alt="Banner Image"
         src="/banner-img.png"

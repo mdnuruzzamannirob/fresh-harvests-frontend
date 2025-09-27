@@ -36,10 +36,10 @@ const TestimonialSection = () => {
             {/* Image */}
             <motion.div
               key={currentTestimonial?._id + "-img"}
-              initial={{ x: -100, opacity: 0 }}
+              initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -100, opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              exit={{ x: -50, opacity: 0 }}
+              transition={{ duration: 0.5 }}
               className="relative flex-1"
             >
               <Image
@@ -54,10 +54,10 @@ const TestimonialSection = () => {
             {/* Text */}
             <motion.div
               key={currentTestimonial?._id + "-text"}
-              initial={{ x: 100, opacity: 0 }}
+              initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 100, opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              exit={{ x: 50, opacity: 0 }}
+              transition={{ duration: 0.5 }}
               className=" flex-[2]"
             >
               <span className=" text-7xl text-primary">❝</span>
@@ -96,22 +96,6 @@ const TestimonialSection = () => {
             />
           ))}
         </div>
-
-        {/* Decoration */}
-        {/* <Image
-          src="/leaf-left.png"
-          alt=""
-          width={50}
-          height={50}
-          className="absolute left-10 top-20 opacity-70"
-        />
-        <Image
-          src="/leaf-right.png"
-          alt=""
-          width={50}
-          height={50}
-          className="absolute right-10 bottom-20 opacity-70"
-        /> */}
       </div>
     </section>
   );

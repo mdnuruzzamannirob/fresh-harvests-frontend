@@ -20,7 +20,7 @@ import { useAppSelector } from "@/store/hooks";
 import UserMenu from "../UserMenu";
 
 const Header = () => {
-  const { token } = useAppSelector((state) => state?.auth);
+  const { token, user } = useAppSelector((state) => state?.auth);
 
   const pathname = usePathname();
 
@@ -100,7 +100,7 @@ const Header = () => {
           </button>
 
           <UserMenu />
-          <div className={token ? "hidden" : "hidden lg:block"}>
+          <div className={token || user ? "hidden" : "hidden lg:block"}>
             <Dialog open={isClose} onOpenChange={setIsClose}>
               <DialogTrigger asChild>
                 <button className="py-2 px-4 border border-gray-50 rounded-sm">

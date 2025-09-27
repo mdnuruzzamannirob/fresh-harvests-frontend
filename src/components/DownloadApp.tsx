@@ -16,7 +16,7 @@ const DownloadApp = () => {
   return (
     <div className="space-y-3">
       <h3 className=" text-sm text-gray-100">Download App:</h3>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center cursor-pointer gap-3">
         {data.map((item, index) => (
           <div
             className="flex p-1 bg-foreground rounded text-white items-center gap-1"

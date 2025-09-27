@@ -24,8 +24,35 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "Fresh Harvests",
-  description: "A platform for fresh produce",
+  title: "Fresh Harvests | Organic Fruits & Vegetables Online",
+  description:
+    "Fresh Harvests brings you the best organic fruits and vegetables online. Explore our fresh produce, seasonal specials, and healthy choices for your family.",
+  openGraph: {
+    title: "Fresh Harvests | Organic Fruits & Vegetables Online",
+    description:
+      "Fresh Harvests brings you the best organic fruits and vegetables online. Explore our fresh produce, seasonal specials, and healthy choices for your family.",
+    url: "/",
+    siteName: "Fresh Harvests",
+    images: [
+      {
+        url: "/home.png", // homepage og image
+        width: 1200,
+        height: 630,
+        alt: "Fresh Harvests Home",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fresh Harvests | Organic Fruits & Vegetables Online",
+    description:
+      "Fresh Harvests brings you the best organic fruits and vegetables online. Explore our fresh produce, seasonal specials, and healthy choices for your family.",
+    images: ["/home.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default async function RootLayout({

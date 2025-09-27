@@ -28,7 +28,7 @@ const UserMenu = () => {
       <PopoverTrigger asChild>
         <button
           className={cn(
-            "bg-gray-20 text-gray-100 font-rubik font-medium  size-8 rounded-full text-sm leading-none overflow-hidden",
+            "bg-gray-20 lg:block hidden text-gray-100 font-rubik font-medium  size-8 rounded-full text-sm leading-none overflow-hidden",
             (!user || !token) && "hidden"
           )}
         >

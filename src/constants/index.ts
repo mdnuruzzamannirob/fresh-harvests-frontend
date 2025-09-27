@@ -21,3 +21,30 @@ export const footerLinks = [
     { name: "Status", href: "#" },
   ],
 ];
+
+export const testimonialData = [
+  {
+    _id: 1,
+    name: "Jane Doe",
+    role: "Professional chef",
+    message:
+      "I absolutely love Fresh Harvest! The quality of their produce is outstanding. It's always fresh, flavorful, and delicious. The convenience of ordering online and having it delivered to my doorstep saves me so much time. Fresh Harvest has become my go-to for all my fruit and vegetable needs.",
+    image: "/review1.png",
+  },
+  {
+    _id: 2,
+    name: "Sarah Smith",
+    role: "Food Blogger",
+    message:
+      "Fresh Harvest is a game changer! Their veggies and fruits are so fresh, it feels like I just picked them from the farm. Highly recommended!",
+    image: "/review2.png",
+  },
+  {
+    _id: 3,
+    name: "Michael Lee",
+    role: "Nutritionist",
+    message:
+      "Finally found a service that delivers quality produce consistently. The ordering process is smooth and the delivery is always on time.",
+    image: "/review3.png",
+  },
+];

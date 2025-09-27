@@ -6,6 +6,10 @@ Fresh Harvests is a modern, responsive grocery e-commerce frontend built with **
 
 ---
 
+#### Live url: https://fresh-harvests-frontend.vercel.app/
+
+---
+
 ## 📌 Features
 
 - Dynamic product pages with detailed information and related products

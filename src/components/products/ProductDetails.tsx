@@ -191,11 +191,16 @@ const ProductDetails = ({
           />
         </motion.div>
 
-        <div className="w-full mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          className="w-full mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
           {data?.slice(0, 8)?.map((product: any) => (
-            <ProductCard key={product?.id} product={product} />
+            <ProductCard key={product?.id} product={product} item={item} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );

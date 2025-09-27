@@ -7,7 +7,7 @@ import { IProduct } from "@/store/features/products/types";
 import { PackageOpen } from "lucide-react";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { container } from "@/constants";
+import { container, item } from "@/constants";
 
 const Products = ({
   data,
@@ -62,7 +62,7 @@ const Products = ({
       >
         {filteredProducts.length > 0 ? (
           filteredProducts?.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} item={item} />
           ))
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-10 text-gray-400">

@@ -27,7 +27,8 @@ const TestimonialSection = () => {
         className="container space-y-10"
         variants={container}
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
       >
         {/* Title */}
         <motion.div variants={item}>

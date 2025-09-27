@@ -91,13 +91,13 @@ const ProductsSection = ({
         key={tab}
         variants={container}
         initial="hidden"
-        animate="show"
+        whileInView="show"
       >
         {filteredProducts.length > 0 ? (
           filteredProducts
             ?.slice(0, 8)
             ?.map((product) => (
-              <ProductCard product={product} key={product.id} />
+              <ProductCard product={product} key={product.id} item={item} />
             ))
         ) : (
           <motion.div

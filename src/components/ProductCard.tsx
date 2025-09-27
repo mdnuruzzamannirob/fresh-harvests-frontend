@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { item } from "@/constants";
 
 export type TProduct = {
   id: string;
@@ -20,9 +19,10 @@ export type TProduct = {
 type TProductCardProps = {
   product: TProduct;
   className?: string;
+  item: any;
 };
 
-const ProductCard = ({ product, className }: TProductCardProps) => {
+const ProductCard = ({ product, className, item }: TProductCardProps) => {
   return (
     <motion.div
       variants={item}

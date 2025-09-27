@@ -12,7 +12,7 @@ const SpecialOfferSection = () => {
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="container mx-auto flex flex-row items-center justify-between relative z-10">
         {/* LEFT CONTENT */}

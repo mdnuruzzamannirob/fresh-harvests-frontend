@@ -6,6 +6,8 @@ import { ICategory } from "@/store/features/categories/types";
 import { IProduct } from "@/store/features/products/types";
 import { PackageOpen } from "lucide-react";
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { container } from "@/constants";
 
 const Products = ({
   data,
@@ -52,7 +54,12 @@ const Products = ({
       </div>
 
       {/* Products grid */}
-      <div className="w-full mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        className="w-full mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+      >
         {filteredProducts.length > 0 ? (
           filteredProducts?.map((product) => (
             <ProductCard key={product.id} product={product} />
@@ -66,7 +73,7 @@ const Products = ({
             </p>
           </div>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

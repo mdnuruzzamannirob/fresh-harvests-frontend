@@ -99,7 +99,8 @@ const Header = () => {
             <span className="hidden lg:block">Cart</span>
           </button>
 
-          <UserMenu />
+          {(token || user) && <UserMenu />}
+
           <div className={token || user ? "hidden" : "hidden lg:block"}>
             <Dialog open={isClose} onOpenChange={setIsClose}>
               <DialogTrigger asChild>

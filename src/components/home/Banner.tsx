@@ -1,10 +1,14 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Badge from "../Badge";
 import DownloadApp from "../DownloadApp";
+import { container, item } from "@/constants";
 
 const Banner = () => {
   return (
-    <section className="relative min-h-dvh flex items-center bg-gray-20 max-sm:py-16  py-24 overflow-hidden">
+    <section className="relative min-h-dvh flex items-center bg-gray-20 max-sm:py-16 py-24 overflow-hidden">
       {/* Rise Side Background */}
       <div className="absolute top-0 right-0 h-full w-4/11 bg-no-repeat bg-cover bg-right max-sm:w-1/3 bg-[url('/bg.jpeg')]" />
 
@@ -18,22 +22,41 @@ const Banner = () => {
       />
 
       {/* content */}
-      <div className="space-y-8 container z-10">
-        <Badge> Welcome to Fresh Harvests</Badge>
-        <h1 className="font-medium font-rubik max-sm:text-[11vw] text-7xl">
+      <motion.div
+        className="space-y-8 container z-10"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.div variants={item}>
+          <Badge> Welcome to Fresh Harvests</Badge>
+        </motion.div>
+
+        <motion.h1
+          variants={item}
+          className="font-medium font-rubik max-sm:text-[11vw] text-7xl"
+        >
           Fresh Fruits <br className="min-lg:hidden" /> and{" "}
           <br className="max-lg:hidden" /> Vegetables
-        </h1>
-        <p className="text-sm text-gray-100 max-sm:w-full w-lg">
+        </motion.h1>
+
+        <motion.p
+          variants={item}
+          className="text-sm text-gray-100 max-sm:w-full w-lg"
+        >
           At Fresh Harvests, we are passionate about providing you with the
           freshest and most flavorful fruits and vegetables.
-        </p>
-        <button className="bg-primary z-10 px-4 py-2 rounded font-medium text-white">
+        </motion.p>
+
+        <motion.button
+          variants={item}
+          className="bg-primary z-10 px-4 py-2 rounded font-medium text-white"
+        >
           Shop Now
-        </button>
+        </motion.button>
 
         {/* Offer Box */}
-        <div className="w-full flex relative">
+        <motion.div variants={item} className="w-full flex relative">
           <div className="hidden sm:block pl-40 relative">
             <Image
               alt="Fresh Vegetables"
@@ -72,10 +95,12 @@ const Banner = () => {
               className="max-sm:size-24"
             />
           </div>
-        </div>
+        </motion.div>
 
-        <DownloadApp />
-      </div>
+        <motion.div variants={item}>
+          <DownloadApp />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

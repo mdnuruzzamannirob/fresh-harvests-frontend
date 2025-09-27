@@ -29,7 +29,7 @@ const UserMenu = () => {
         <button
           className={cn(
             "bg-gray-20 lg:block hidden text-gray-100 font-rubik font-medium  size-8 rounded-full text-sm leading-none overflow-hidden",
-            (!user || !token) && "hidden"
+            !user || !token ? "hidden" : "lg:block"
           )}
         >
           {user?.fullName?.charAt(0) || "U"}

@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { item } from "@/constants";
 
 export type TProduct = {
   id: string;
@@ -22,7 +24,8 @@ type TProductCardProps = {
 
 const ProductCard = ({ product, className }: TProductCardProps) => {
   return (
-    <div
+    <motion.div
+      variants={item}
       className={cn(
         "rounded-xl border border-gray-20 shadow-lg p-3 space-y-3",
         className
@@ -51,7 +54,7 @@ const ProductCard = ({ product, className }: TProductCardProps) => {
           Add to Cart
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

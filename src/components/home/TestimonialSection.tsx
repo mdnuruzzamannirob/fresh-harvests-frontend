@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { testimonialData } from "@/constants";
+import { container, item, testimonialData } from "@/constants";
 import Title from "../Title";
 
 const TestimonialSection = () => {
@@ -23,15 +23,26 @@ const TestimonialSection = () => {
 
   return (
     <section className="relative bg-white py-20">
-      <div className="container space-y-10">
-        <Title
-          badge="Testimonial"
-          description="Don't just take our word for it—here's what some of our
-            customers have to say about their experience with Fresh Harvest:"
-          title="  What Our Customers Say"
-        />
+      <motion.div
+        className="container space-y-10"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {/* Title */}
+        <motion.div variants={item}>
+          <Title
+            badge="Testimonial"
+            description="Don't just take our word for it—here's what some of our customers have to say about their experience with Fresh Harvest:"
+            title="What Our Customers Say"
+          />
+        </motion.div>
 
-        <div className="flex items-center lg:flex-row flex-col justify-between lg:gap-20 gap-10  relative overflow-hidden min-h-96">
+        {/* Testimonial Content */}
+        <motion.div
+          variants={item}
+          className="flex items-center lg:flex-row flex-col justify-between lg:gap-20 gap-10 relative overflow-hidden min-h-96"
+        >
           <AnimatePresence mode="wait">
             {/* Image */}
             <motion.div
@@ -58,17 +69,17 @@ const TestimonialSection = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 50, opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className=" flex-[2]"
+              className="flex-[2]"
             >
-              <span className=" text-7xl text-primary">❝</span>
+              <span className="text-7xl text-primary">❝</span>
 
               <div className="bg-gray-20 space-y-5 w-full rounded-2xl p-5">
                 <p className="text-gray-100 leading-relaxed">
                   {currentTestimonial?.message}
                 </p>
 
-                <div className=" flex items-center capitalize gap-1">
-                  <p className="font-medium  font-rubik">
+                <div className="flex items-center capitalize gap-1">
+                  <p className="font-medium font-rubik">
                     {currentTestimonial?.name} -
                   </p>
                   <p className="text-gray-100 text-sm">
@@ -82,10 +93,13 @@ const TestimonialSection = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {/* Dots */}
-        <div className="flex items-center justify-center gap-2">
+        <motion.div
+          variants={item}
+          className="flex items-center justify-center gap-2"
+        >
           {testimonialData.map((_, index) => (
             <button
               key={index}
@@ -95,8 +109,8 @@ const TestimonialSection = () => {
               }`}
             />
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
